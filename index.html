@@ -21,13 +21,10 @@
       input[type="number"] {
         -moz-appearance: textfield;
       }
-      .fullscreen {
-        @apply w-screen h-screen lg:w-screen lg:h-screen text-4xl bg-gray-900 p-10;
-      }
     </style>
   </head>
   <body>
-    <div class="bg-gray-600 w-screen flex items-center justify-center h-screen">
+    <div class="bg-gray-600 w-screen flex items-center justify-center h-screen relative">
       <div
         class="bg-black flex flex-col items-center h-[530px] rounded-lg text-white w-[350px] lg:w-[420px]"
       >
@@ -163,6 +160,20 @@
             >
               =
             </li>
+          </div>
+        </div>
+      </div>
+      <!-- History Section -->
+      <div class="bg-black h-[340px] w-[335px] lg:w-[400px] z-10 absolute top-60 lg:top-72 transition-all ease-in-out duration-200 history-sec text-white hidden">
+        <div class="relative w-full h-full">
+          <ul class="flex flex-col items-end p-5 text-lg gap-8">
+            <li>1+2=3</li>
+            <li>5+3=8</li>
+            <li>5+3=8</li>
+            <li>5+3=8</li>
+          </ul>
+          <div class="text-4xl absolute p-5 top-64 right-0">
+              <i class="ri-delete-bin-6-line cursor-pointer"></i>
           </div>
         </div>
       </div>

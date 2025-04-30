@@ -6,14 +6,13 @@ const buttonFull = document.querySelectorAll(".transition-all");
 const topHead = document.querySelector(".top-head");
 const liRow = document.querySelector(".li-row");
 const liCol = document.querySelectorAll(".li-col");
-
+const historyIcon = document.getElementById("history");
+const historySec = document.querySelector(".history-sec")
 inpField.value = "0";
 
 buttons.forEach((button) => {
   button.addEventListener("click", () => {
     let value = button.textContent?.trim();
-    const currentIdx = inpField.selectionStart ?? 0;
-    const prevIdx = inpField.value[currentIdx - 1];
     inpField.focus();
     if (value == "C") {
       inpField.value = "0";
@@ -32,19 +31,25 @@ buttons.forEach((button) => {
     } else if (value == ".") {
       inpField.value += ".";
     } else if (value == "Ran") {
-      inpField.value += Math.floor(Math.random() * 10);
+      if(inpField.value === "0"){
+        inpField.value = Math.floor(Math.random() * 10).toString();
+      } else {
+        inpField.value += Math.floor(Math.random() * 10);
+      }
     } else if (value == "0" && inpField.value !== "0") {
       inpField.value += value;
-    } else if (["+", "-", "X", "/"].includes(value!)) {
+    } 
+    else if (["+", "-", "X", "/"].includes(value!)) {
       const lastChar = inpField.value[inpField.value.length - 1];
       const isLastCharOperator = ["+", "-", "*", "/"].includes(lastChar);
       const operator = value === "X" ? "*" : value;
       if (isLastCharOperator) {
         inpField.value = inpField.value.slice(0, -1) + operator;
       } else {
-        inpField.value += value;
+        inpField.value += operator;
       }
-    } else {
+    }
+    else {
       if (inpField.value === "0") {
         inpField.value = value!;
       } else {
@@ -58,7 +63,7 @@ buttons.forEach((button) => {
 
 inpField.addEventListener("keydown", (e) => {
   const key = e.key;
-  if (key == "Enter") {
+  if (key == "Enter" || key == "=") {
     e?.preventDefault();
     try {
       if (inpField.value.trim() === "") {
@@ -118,3 +123,12 @@ fullScreen?.addEventListener("mouseover", (e) => {
   inpField?.classList.toggle("text-[5rem]");
 });
 
+historyIcon?.addEventListener('click', (e) => {
+    if(historySec?.classList.contains("hidden")){
+      historySec?.classList.remove("hidden");
+    }else {
+      historySec?.classList.add("hidden");
+    }
+
+
+})
