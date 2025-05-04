@@ -24,6 +24,9 @@ buttons.forEach((button) => {
           inpField.value = "0";
         }
         let expression = inpField.value.replace(/%/g, "*0.01");
+        while (/[+\-*/.]$/.test(expression)) {
+          expression = expression.slice(0, -1);
+        }
         inpField.value = eval(expression);
       } catch {
         inpField.value = "error";
@@ -70,6 +73,9 @@ inpField.addEventListener("keydown", (e) => {
         inpField.value = "0";
       }
       let expression = inpField.value.replace(/%/g, "*0.01");
+      while (/[+\-*/.]$/.test(expression)) {
+        expression = expression.slice(0, -1);
+      }
       inpField.value = eval(expression).toString();
     } catch {
       inpField.value = "error";
